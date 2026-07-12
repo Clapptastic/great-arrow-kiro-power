@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="icon.png" alt="Great Arrow Digital" width="128" height="128">
+</p>
+
 # Great Arrow Digital — Kiro Power
 
 Connect Kiro to your [Great Arrow Digital](https://www.greatarrow.ai) workspace:
@@ -24,6 +28,7 @@ See [`POWER.md`](./POWER.md) for full setup, workflows, and troubleshooting.
 
 - `POWER.md` — power manifest (metadata + docs), read by Kiro on activation
 - `mcp.json` — MCP server config (HTTP transport, `kiro-power` client)
+- `icon.png` — 512×512 Great Arrow logo for the power listing
 
 The power connects over HTTP to `https://www.greatarrow.ai/api/mcp`. All auth,
 scopes, rate limiting, and audit logging are enforced server-side. No secret is
