@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "great-arrow": {
+      "type": "http",
+      "url": "https://www.greatarrow.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_GAD_TOKEN",
+        "X-MCP-Client": "kiro-power",
+        "X-GAD-Install-Version": "2026.07.06"
+      }
+    }
+  }
+}
