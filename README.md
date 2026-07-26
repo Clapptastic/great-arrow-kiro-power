@@ -36,5 +36,5 @@ stored in this repo — you supply your own `gad_` token.
 
 ## Support
 
-`support@greatarrowdigital.com` · [Support](https://www.greatarrow.ai/support) ·
+`support@greatarrow.ai` · [Support](https://www.greatarrow.ai/support) ·
 [Privacy](https://www.greatarrow.ai/legal/privacy)
