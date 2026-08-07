@@ -1,16 +1,16 @@
 ---
 name: "great-arrow"
-displayName: "Great Arrow Digital"
-description: "Connect to your Great Arrow Digital workspace — semantic memory, AI agents, integrations, calendar, email, and 306 MCP tools in one server."
+displayName: "GreatArrow.ai"
+description: "Connect to your GreatArrow.ai workspace — semantic memory, AI agents, integrations, calendar, email, and 313 MCP tools in one server."
 keywords: ["great-arrow", "gad", "memory", "workspace", "rag", "agents"]
 author: "Manito AI"
 ---
 
-# Great Arrow Digital
+# GreatArrow.ai
 
 ## Overview
 
-Great Arrow Digital (GAD) is an AI workspace platform that gives every connected AI assistant access to a shared semantic memory, 22 agents (1 orchestrator + 21 specialists), and deep integrations with Google, Microsoft, Slack, Notion, GitHub, and more — all through a single MCP server.
+GreatArrow.ai (GAD) is an AI workspace platform that gives every connected AI assistant access to a shared semantic memory, 22 agents (1 orchestrator + 21 specialists), and deep integrations with Google, Microsoft, Slack, Notion, GitHub, and more — all through a single MCP server.
 
 Once connected, your AI assistant can:
 
@@ -26,7 +26,7 @@ All data is workspace-scoped with Row Level Security. Every tool call is authent
 
 ### Prerequisites
 
-- A Great Arrow Digital account at https://www.greatarrow.ai
+- A GreatArrow.ai account at https://www.greatarrow.ai
 - At least one workspace (created automatically on first sign-in)
 
 ### Step 1: Mint a Personal Access Token
@@ -145,11 +145,11 @@ github_issue_create({ owner: "org", repo: "app", title: "Bug: ..." })
 
 ## Dynamic Tool Discovery
 
-This Power connects as `kiro-power`, so a new session starts with a focused core set of ~23 tools. That keeps context lean, improves tool-selection accuracy, and — importantly — keeps the `tools/list` response small enough for Kiro to accept (the full 306-tool surface exceeds Kiro's request-size limit and fails with "Improperly formed request"). Two meta-tools let you expand the surface on demand:
+This Power connects as `kiro-power`, so a new session starts with a focused core set of ~23 tools. That keeps context lean, improves tool-selection accuracy, and — importantly — keeps the `tools/list` response small enough for Kiro to accept (the full 313-tool surface exceeds Kiro's request-size limit and fails with "Improperly formed request"). Two meta-tools let you expand the surface on demand:
 
 ### `tools_discover` — Browse the Full Catalog
 
-Query the complete tool catalog (306 tools) grouped by domain. Supports natural-language search and returns ML-powered recommendations based on your usage patterns.
+Query the complete tool catalog (313 tools) grouped by domain. Supports natural-language search and returns ML-powered recommendations based on your usage patterns.
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ tools_enable({ tools: ["email_send", "github_issue_create"] })
 - **Expand on demand**: Use `tools_discover` to find what you need, then `tools_enable` to activate
 - **Recommendations**: The `initialize` response includes a `recommended_tools` field with personalized suggestions based on your history with this client
 - **Persistent within a session**: Tools you enable stay visible for the rest of the session; re-enable after a reconnect
-- **Enable in small batches**: Add the handful of tools you need for the task. Avoid `tools_enable({ tools: ["*"] })` on Kiro — enabling all 274 puts every definition back into `tools/list` and re-trips Kiro's request-size limit. The wildcard is meant for clients without that cap.
+- **Enable in small batches**: Add the handful of tools you need for the task. Avoid `tools_enable({ tools: ["*"] })` on Kiro — enabling all 313 puts every definition back into `tools/list` and re-trips Kiro's request-size limit. The wildcard is meant for clients without that cap.
 
 ### Recommended Workflow
 
@@ -204,7 +204,7 @@ tools_enable({ tools: ["email_send", "github_issue_create"] })
 
 ## Tool Categories
 
-The server exposes 306 tools across 5 scopes:
+The server exposes 313 tools across 5 scopes:
 
 | Scope              | Tools                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Purpose                              |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -255,7 +255,7 @@ The server exposes 306 tools across 5 scopes:
 
 ### Error: "Improperly formed request" / no tools appear
 
-**Cause:** Kiro rejected an oversized `tools/list` response. This happens when the server sends the full 306-tool surface instead of the curated set.
+**Cause:** Kiro rejected an oversized `tools/list` response. This happens when the server sends the full 313-tool surface instead of the curated set.
 **Solution:**
 
 1. Confirm `X-MCP-Client` is set to `kiro-power` (not `kiro`) in your `mcp.json` headers — `kiro` receives the full surface (it's meant for the stdio proxy).
@@ -266,7 +266,7 @@ The server exposes 306 tools across 5 scopes:
 
 **IMPORTANT:** Before using this power, replace the following placeholder in `mcp.json`:
 
-- **`YOUR_GAD_TOKEN`**: Your personal access token for Great Arrow Digital.
+- **`YOUR_GAD_TOKEN`**: Your personal access token for GreatArrow.ai.
   - **How to get it:**
     1. Sign in at https://www.greatarrow.ai
     2. Go to https://www.greatarrow.ai/install

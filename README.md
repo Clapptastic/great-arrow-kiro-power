@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="icon.png" alt="Great Arrow Digital" width="128" height="128">
+  <img src="icon.png" alt="GreatArrow.ai" width="128" height="128">
 </p>
 
-# Great Arrow Digital — Kiro Power
+# GreatArrow.ai — Kiro Power
 
-Connect Kiro to your [Great Arrow Digital](https://www.greatarrow.ai) workspace:
+Connect Kiro to your [GreatArrow.ai](https://www.greatarrow.ai) workspace:
 persistent semantic memory shared across every AI you use, 22 agents, and deep
 integrations (Google, Microsoft, Slack, Notion, GitHub, and more) — all through
 a single MCP server.
