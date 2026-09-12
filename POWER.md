@@ -1,7 +1,7 @@
 ---
 name: "great-arrow"
 displayName: "GreatArrow.ai"
-description: "Connect to your GreatArrow.ai workspace — semantic memory, AI agents, integrations, calendar, email, and 420 MCP tools in one server."
+description: "Connect to your GreatArrow.ai workspace — semantic memory, AI agents, integrations, calendar, email, and 434 MCP tools in one server."
 keywords: ["great-arrow", "gad", "memory", "workspace", "rag", "agents"]
 author: "Manito AI"
 ---
@@ -107,7 +107,7 @@ After a decision, fact, or "remember this" moment — persist it.
 memory_create({
   content: "We decided to use Stripe metered billing for overage charges at $0.01/unit",
   title: "Billing: Stripe overage model decision",
-  source: "architecture-review-2025-05"
+  tags: ["billing", "stripe", "architecture-decision"]
 })
 ```
 
@@ -145,11 +145,11 @@ github_issue_create({ owner: "org", repo: "app", title: "Bug: ..." })
 
 ## Dynamic Tool Discovery
 
-This Power connects as `kiro-power`, so a new session starts with a focused core set of ~23 tools. That keeps context lean, improves tool-selection accuracy, and — importantly — keeps the `tools/list` response small enough for Kiro to accept (the full 420-tool surface exceeds Kiro's request-size limit and fails with "Improperly formed request"). Two meta-tools let you expand the surface on demand:
+This Power connects as `kiro-power`, so a new session starts with a focused core set of 41 tools. That keeps context lean, improves tool-selection accuracy, and — importantly — keeps the `tools/list` response small enough for Kiro to accept (the full 434-tool surface exceeds Kiro's request-size limit and fails with "Improperly formed request"). Two meta-tools let you expand the surface on demand:
 
 ### `tools_discover` — Browse the Full Catalog
 
-Query the complete tool catalog (313 tools) grouped by domain. Supports natural-language search and returns ML-powered recommendations based on your usage patterns.
+Query the complete tool catalog (434 tools) grouped by domain. Supports natural-language search and returns ML-powered recommendations based on your usage patterns.
 
 **Parameters:**
 
@@ -177,7 +177,7 @@ Add tools to your active session. After calling this, the newly enabled tools ap
 | ------- | --------------------- | --------------------------------------------------------------------------- |
 | `tools` | string[] (1–50 items) | Tool names to activate. Use `["*"]` to enable all tools your scope permits. |
 
-**Returns:** `{ enabled: [...], active_count: N, total_available: 236 }`
+**Returns:** `{ enabled: [...], active_count: N, total_available: 434 }`
 
 **Example:**
 
@@ -188,11 +188,11 @@ tools_enable({ tools: ["email_send", "github_issue_create"] })
 
 ### Dynamic Filtering Behavior
 
-- **Session init**: Only the curated core set (~23 tools) is exposed in `tools/list` for the `kiro-power` client
+- **Session init**: Only the curated core set (41 tools) is exposed in `tools/list` for the `kiro-power` client
 - **Expand on demand**: Use `tools_discover` to find what you need, then `tools_enable` to activate
 - **Recommendations**: The `initialize` response includes a `recommended_tools` field with personalized suggestions based on your history with this client
 - **Persistent within a session**: Tools you enable stay visible for the rest of the session; re-enable after a reconnect
-- **Enable in small batches**: Add the handful of tools you need for the task. Avoid `tools_enable({ tools: ["*"] })` on Kiro — enabling all 313 puts every definition back into `tools/list` and re-trips Kiro's request-size limit. The wildcard is meant for clients without that cap.
+- **Enable in small batches**: Add the handful of tools you need for the task. Avoid `tools_enable({ tools: ["*"] })` on Kiro — enabling all 434 puts every definition back into `tools/list` and re-trips Kiro's request-size limit. The wildcard is meant for clients without that cap.
 
 ### Recommended Workflow
 
@@ -204,7 +204,9 @@ tools_enable({ tools: ["email_send", "github_issue_create"] })
 
 ## Tool Categories
 
-The server exposes 420 tools across 5 scopes:
+The server exposes 434 tools across 5 scopes. The tool names below are a
+representative sample per scope, not the full list — browse the rest with
+`tools_discover`:
 
 | Scope              | Tools                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Purpose                              |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -255,7 +257,7 @@ The server exposes 420 tools across 5 scopes:
 
 ### Error: "Improperly formed request" / no tools appear
 
-**Cause:** Kiro rejected an oversized `tools/list` response. This happens when the server sends the full 420-tool surface instead of the curated set.
+**Cause:** Kiro rejected an oversized `tools/list` response. This happens when the server sends the full 434-tool surface instead of the curated set.
 **Solution:**
 
 1. Confirm `X-MCP-Client` is set to `kiro-power` (not `kiro`) in your `mcp.json` headers — `kiro` receives the full surface (it's meant for the stdio proxy).
